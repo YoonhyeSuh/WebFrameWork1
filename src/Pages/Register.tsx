@@ -1,14 +1,23 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+
+//json 파일에 데이터를 쓰는거 필요
 
 function Register() {
+  const navigate = useNavigate();
   const [name, setName] = useState('');
+  const [nickname, setNickName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputName = e.target.value;
     setName(inputName);
+  }
+
+  const handleNicknameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputNickname = e.target.value;
+    setNickName(inputNickname);
   }
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,13 +37,14 @@ function Register() {
       const r_name = name;
       const r_email = email;
       const r_password = password;
+      const r_nickname = nickname;
   
       // 기존 사용자 목록 가져오기
       const storedUsers = localStorage.getItem('users');
       const users = storedUsers ? JSON.parse(storedUsers) : [];
   
       // 새로운 사용자 정보 생성
-      const newUser = { r_name, r_email, r_password };
+      const newUser = { r_nickname, r_name, r_email, r_password };
   
       // 기존 사용자 목록에 새로운 사용자 추가
       users.push(newUser);
@@ -43,8 +53,11 @@ function Register() {
       localStorage.setItem('users', JSON.stringify(users));
   
       console.log('회원가입 성공');
+      alert('회원가입 성공')
+      navigate("/login");
     } catch (error: any) {
       console.error('회원가입 오류:', error.message);
+      alert('회원가입 오류')
     }
   };
   
@@ -60,6 +73,15 @@ function Register() {
             className="mt-1 p-2 w-full border rounded"
             value={name}
             onChange={handleNameChange}
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-600">닉네임</label>
+          <input
+            type="text"
+            className="mt-1 p-2 w-full border rounded"
+            value={nickname}
+            onChange={handleNicknameChange}
           />
         </div>
         <div className="mb-4">
@@ -80,10 +102,8 @@ function Register() {
             onChange={handlePasswordChange}
           />
         </div>
-        <button type="button" className="w-full bg-blue-500 text-white p-2 rounded" onClick={handleSignUp}>
-          <Link to="/login">
-            Sign up
-          </Link>
+        <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded" onClick={handleSignUp}>
+            Sign up  
         </button>
       </form>
     </div>

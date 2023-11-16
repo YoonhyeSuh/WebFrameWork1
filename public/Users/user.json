@@ -1,0 +1,24 @@
+
+[
+        {
+        "name": "김한성",
+        "nickname" : "한성",
+        "email" : "hansung@hansung.com",
+        "password" : "hansung1234"
+    },
+
+    {
+        "name": "김상상",
+        "nickname" : "상상",
+        "email" : "sangsang@hansung.com",
+        "password" : "sangsang1234"
+    },
+    
+    {
+        "name": "김부기",
+        "nickname" : "부기",
+        "email" : "boogie@hansung.com",
+        "password" : "boogie1234"
+    }
+]
+

@@ -30,8 +30,18 @@ function Register() {
     setPassword(inputPassword);
   }
 
+  //유효성 검사
+  const isValidInput = name.length >= 1 && nickname.length >= 1;
+  const isEmailValid = email.search(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
+  const pwNumLetter = password.search(/[0-9]/g);
+  const pwEngLetter = password.search(/[a-z]/ig);
+  const isValidPassword = password.length >= 8 && password.length <= 20 &&
+    ( (pwNumLetter >= 1 && pwEngLetter >= 1));
+
   const handleSignUp = async () => {
-      
+    if (!isValidInput || !isValidPassword || !isEmailValid)
+      alert('정확히 입력되었는지 다시 확인해주세요.');
+    else{  
     try {
       // 이메일과 비밀번호 가져오기
       const r_name = name;
@@ -59,9 +69,18 @@ function Register() {
       console.error('회원가입 오류:', error.message);
       alert('회원가입 오류')
     }
+  }
+    
   };
   
 
+  const getUsers = () => {
+    const storedUsers = localStorage.getItem('users');
+    return storedUsers ? JSON.parse(storedUsers) : [];
+  };
+
+  console.log(getUsers());
+  
   return (
     <div className="flex items-center justify-center h-screen">
       <form className="w-1/3 p-8 bg-white-200">

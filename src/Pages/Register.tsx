@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-//json 파일에 데이터를 쓰는거 필요
+const entranceYearArray: string[] = [];
+  for (let i = 2000; i < 2024; i++) {
+    entranceYearArray.push(i.toString()); //숫자를 문자열로 변환
+  }
 
 function Register() {
   const navigate = useNavigate();
@@ -9,6 +12,8 @@ function Register() {
   const [nickname, setNickName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [option, setOption] = useState("2023");
+  
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputName = e.target.value;
@@ -30,31 +35,36 @@ function Register() {
     setPassword(inputPassword);
   }
 
+  const handleOption = (e: any) => {
+    const inputEntrance = e.target.value;
+    setOption(inputEntrance);
+  };
+
   //유효성 검사
   const isValidInput = name.length >= 1 && nickname.length >= 1;
-  const isEmailValid = email.search(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
-  const pwNumLetter = password.search(/[0-9]/g);
-  const pwEngLetter = password.search(/[a-z]/ig);
-  const isValidPassword = password.length >= 8 && password.length <= 20 &&
-    ( (pwNumLetter >= 1 && pwEngLetter >= 1));
+  const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const pwNumLetter = /[0-9]/.test(password);
+  const pwEngLetter = /[a-zA-Z]/.test(password);
+  const isValidPassword = password.length >= 1 && password.length <= 20 && (pwNumLetter && pwEngLetter);
 
   const handleSignUp = async () => {
     if (!isValidInput || !isValidPassword || !isEmailValid)
       alert('정확히 입력되었는지 다시 확인해주세요.');
     else{  
     try {
-      // 이메일과 비밀번호 가져오기
+      // 회원 정보 가져오기
       const r_name = name;
       const r_email = email;
       const r_password = password;
       const r_nickname = nickname;
+      const r_entrance = option;
   
       // 기존 사용자 목록 가져오기
       const storedUsers = localStorage.getItem('users');
       const users = storedUsers ? JSON.parse(storedUsers) : [];
   
       // 새로운 사용자 정보 생성
-      const newUser = { r_nickname, r_name, r_email, r_password };
+      const newUser = { r_name,  r_nickname, r_email, r_password, r_entrance };
   
       // 기존 사용자 목록에 새로운 사용자 추가
       users.push(newUser);
@@ -83,7 +93,9 @@ function Register() {
   
   return (
     <div className="flex items-center justify-center h-screen">
-      <form className="w-1/3 p-8 bg-white-200">
+      <form className="w-1/3 p-8 bg-white-200"> 
+        <h2 className="text-blue-700 text-2xl font-bold mr-5">한성대에 오신걸 환영합니다!</h2>
+        <br></br>
         <h2 className="text-2xl font-bold mb-4">Register</h2>
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-600">이름</label>
@@ -121,7 +133,22 @@ function Register() {
             onChange={handlePasswordChange}
           />
         </div>
-        <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded" onClick={handleSignUp}>
+        
+  <div className="select select w-full max-w-xs">
+  <label className="block text-sm font-medium text-gray-600">입학년도</label>
+    <select onChange={handleOption} value={option}>
+      <option disabled>Entrace Year</option>
+      `{entranceYearArray.map((data, index) => (
+        <option value={data} key={index}>
+          {data}
+        </option>
+      ))}
+      console.log(option);
+      console.log(data);
+    </select>
+  </div>
+  <br></br>
+        <button type="submit" className="w-full bg-blue-800 text-white p-2 rounded" onClick={handleSignUp}>
             Sign up  
         </button>
       </form>

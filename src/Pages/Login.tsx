@@ -29,7 +29,7 @@ function Login() {
       console.error('데이터를 가져오는 중 오류 발생:', error);
     });
     
-  }, []); // 마운트될 때 한 번만 실행
+  }, [userData]); // 마운트될 때 한 번만 실행
 
   const handleLoginEmail = (e:any) => {
       setEmail(e.target.value);
@@ -88,13 +88,13 @@ function Login() {
           />
         </div>
         
-        <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded" onClick={handleLogin}>
+        <button type="submit" className="w-full bg-blue-800 text-white p-2 rounded" onClick={handleLogin}>
           로그인
         </button>
         
         <div className="text-blue-900 text-center mt-8 font-semibold text-xl">
         <span className="text-gray-600 mr-2">에부기타임이 처음이신가요?</span>
-        <Link to="/register" className="text-blue-700">
+        <Link to="/register" className="text-blue-800">
           회원가입
         </Link>
       </div>

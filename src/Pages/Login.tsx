@@ -72,7 +72,8 @@ function Login() {
           <label className="block text-sm font-medium text-gray-600">이메일</label>
           <input
             type="email"
-            className="mt-1 p-2 w-full border rounded"
+            placeholder="Type here"
+            className="input-bordered input-info mt-1 p-2 w-full border rounded"
             value={loginEmail}
             onChange={handleLoginEmail}
           />
@@ -82,7 +83,8 @@ function Login() {
           <label className="block text-sm font-medium text-gray-600">비밀번호</label>
           <input
             type="password"
-            className="mt-1 p-2 w-full border rounded"
+            placeholder="Type here"
+            className="input-bordered input-info mt-1 p-2 w-full border rounded"
             value={loginPassword}
             onChange={handleLoginPw}
           />

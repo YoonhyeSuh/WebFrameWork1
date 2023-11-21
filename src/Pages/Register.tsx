@@ -101,7 +101,8 @@ function Register() {
           <label className="block text-sm font-medium text-gray-600">이름</label>
           <input
             type="text"
-            className="mt-1 p-2 w-full border rounded"
+            placeholder="Type here"
+            className="input input-bordered input-info mt-1 p-2 w-full border rounded"
             value={name}
             onChange={handleNameChange}
           />
@@ -110,7 +111,8 @@ function Register() {
           <label className="block text-sm font-medium text-gray-600">닉네임</label>
           <input
             type="text"
-            className="mt-1 p-2 w-full border rounded"
+            placeholder="Type here"
+            className="input input-bordered input-info mt-1 p-2 w-full border rounded"
             value={nickname}
             onChange={handleNicknameChange}
           />
@@ -119,7 +121,8 @@ function Register() {
           <label className="block text-sm font-medium text-gray-600">이메일</label>
           <input
             type="email"
-            className="mt-1 p-2 w-full border rounded"
+            placeholder="Type here"
+            className="input input-bordered input-info mt-1 p-2 w-full border rounded"
             value={email}
             onChange={handleEmailChange}
           />
@@ -128,27 +131,25 @@ function Register() {
           <label className="block text-sm font-medium text-gray-600">비밀번호</label>
           <input
             type="password"
-            className="mt-1 p-2 w-full border rounded"
+            placeholder="Type here"
+            className="input input-bordered input-info mt-1 p-2 w-full border rounded"
             value={password}
             onChange={handlePasswordChange}
           />
         </div>
         
-  <div className="select select w-full max-w-xs">
-  <label className="block text-sm font-medium text-gray-600">입학년도</label>
-    <select onChange={handleOption} value={option}>
-      <option disabled>Entrace Year</option>
-      `{entranceYearArray.map((data, index) => (
+        <label className="block text-sm font-medium text-gray-600">입학년도</label>
+  
+  <select className="select select-info mt-1 p-2 w-full border rounded">
+  <option disabled selected>Entrance Year</option>
+    {entranceYearArray.map((data, index) => (
         <option value={data} key={index}>
-          {data}
+            {data}
         </option>
-      ))}
-      console.log(option);
-      console.log(data);
-    </select>
-  </div>
-  <br></br>
-        <button type="submit" className="w-full bg-blue-800 text-white p-2 rounded" onClick={handleSignUp}>
+    ))}
+  </select>
+
+        <button type="submit" className="w-full bg-blue-800 mt-4 text-white p-2 rounded" onClick={handleSignUp}>
             Sign up  
         </button>
       </form>

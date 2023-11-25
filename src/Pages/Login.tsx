@@ -85,6 +85,7 @@ function Login() {
             type="password"
             placeholder="Type here"
             className="input-bordered input-info mt-1 p-2 w-full border rounded"
+            //className="mt-1 p-2 w-full border rounded"
             value={loginPassword}
             onChange={handleLoginPw}
           />

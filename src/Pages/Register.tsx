@@ -133,6 +133,7 @@ function Register() {
             type="password"
             placeholder="Type here"
             className="input input-bordered input-info mt-1 p-2 w-full border rounded"
+            //className="mt-1 p-2 w-full border rounded"
             value={password}
             onChange={handlePasswordChange}
           />
